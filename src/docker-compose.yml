@@ -1,0 +1,29 @@
+services:
+    task_tracker_api:
+        build:
+            context: .
+            dockerfile: ./TaskTracker.Api/Dockerfile
+        ports:
+            - "5010:8080"
+        env_file:
+            - .env/task_tracker_api.env
+        container_name: task_tracker_api
+        depends_on:
+            task_tracker_db:
+                condition: service_healthy
+        restart: unless-stopped
+
+    task_tracker_db:
+        image: postgres:15
+        container_name: task_tracker_db
+        restart: unless-stopped
+        ports:
+            - "5432:5432"
+        env_file:
+            - .env/task_tracker_db.env
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U admin -d task_tracker_db"]
+            interval: 10s
+            timeout: 5s
+            retries: 10
+            start_period: 30s

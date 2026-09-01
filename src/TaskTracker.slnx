@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="TaskTracker.Api/TaskTracker.Api.csproj" />
+  <Project Path="TaskTracker.Application/TaskTracker.Application.csproj" />
+  <Project Path="TaskTracker.Core/TaskTracker.Core.csproj" />
+  <Project Path="TaskTracker.Infrastructure/TaskTracker.Infrastructure.csproj" />
+</Solution>
