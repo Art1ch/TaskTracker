@@ -1,7 +1,7 @@
 services:
     task_tracker_api:
         build:
-            context: .
+            context: ./Backend
             dockerfile: ./TaskTracker.Api/Dockerfile
         ports:
             - "5010:8080"

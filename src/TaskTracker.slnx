@@ -1,6 +1,16 @@
 <Solution>
-  <Project Path="TaskTracker.Api/TaskTracker.Api.csproj" />
-  <Project Path="TaskTracker.Application/TaskTracker.Application.csproj" />
-  <Project Path="TaskTracker.Core/TaskTracker.Core.csproj" />
-  <Project Path="TaskTracker.Infrastructure/TaskTracker.Infrastructure.csproj" />
+  <Folder Name="/Backend/">
+    <Project Path="Backend/TaskTracker.Api/TaskTracker.Api.csproj" />
+    <Project Path="Backend/TaskTracker.Application/TaskTracker.Application.csproj" />
+    <Project Path="Backend/TaskTracker.Core/TaskTracker.Core.csproj" />
+    <Project Path="Backend/TaskTracker.Infrastructure/TaskTracker.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Frontend/">
+    <Project Path="Frontend/TaskTrackerDesktop.Core/TaskTrackerDesktop.Core.csproj" Id="f690acd4-4b1f-4ff4-b0b6-60351d8807a3" />
+    <Project Path="Frontend/TaskTrackerDesktop.WinUI/TaskTrackerDesktop.WinUI.csproj" Id="4fda76fc-fcf4-48fe-8ec7-2947dfdb7cd7">
+      <Platform Project="x64" />
+      <Deploy />
+    </Project>
+  </Folder>
+
 </Solution>
