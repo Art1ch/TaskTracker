@@ -10,20 +10,18 @@ public sealed partial class RegisterViewModel : ViewModelBase
 {
     private readonly IAuthService _authService;
     private readonly IDialogService _dialogService;
-    private readonly INavigationService _navigationService;
 
     [ObservableProperty]
-    private RegisterForm registerForm;
+    private RegisterForm _registerForm;
 
     public RegisterViewModel(
         IAuthService authService,
         IDialogService dialogService,
         INavigationService navigationService
-    )
+    ) : base(navigationService)
     {
         _authService = authService;
         _dialogService = dialogService;
-        _navigationService = navigationService;
     }
 
     [RelayCommand]
@@ -42,7 +40,7 @@ public sealed partial class RegisterViewModel : ViewModelBase
 
             if (response.IsSucceed)
             {
-                _navigationService.NavigateToLoginPage();
+                _navigationService.NavigateTo("Login");
             }
             else
             {

@@ -1,7 +1,12 @@
-﻿namespace TaskTrackerDesktop.Core.Forms;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public sealed class LoginForm
+namespace TaskTrackerDesktop.Core.Forms;
+
+public sealed partial class LoginForm : ObservableObject
 {
-    public string Email { get; set; }
-    public string Password { get; set; }
+    [ObservableProperty]
+    private string _email;
+
+    [ObservableProperty]
+    private string _password;
 }

@@ -9,19 +9,17 @@ namespace TaskTrackerDesktop.Core.ViewModels;
 public sealed partial class LoginViewModel : ViewModelBase
 {
     private readonly IAuthService _authService; 
-    private readonly INavigationService _navigationService;
     private readonly IDialogService _dialogService;
 
     [ObservableProperty]
-    private LoginForm loginForm;
+    private LoginForm _loginForm;
 
     public LoginViewModel(
         INavigationService navigationService,
         IAuthService authService,
         IDialogService dialogService
-    )
+    ) : base(navigationService)
     {
-        _navigationService = navigationService;
         _authService = authService;
         _dialogService = dialogService;
     }
@@ -37,7 +35,7 @@ public sealed partial class LoginViewModel : ViewModelBase
 
             if (response.IsSucceed)
             {
-                _navigationService.NavigateToMainShell();
+                _navigationService.NavigateTo("MainShell");
             }
             else
             {

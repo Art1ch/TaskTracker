@@ -14,4 +14,5 @@ public interface IAuthService
         CancellationToken cancellationToken = default
     );
     Task<LoginResponse> LoginAsync(string email, string password, CancellationToken cancellationToken = default);
+    Task LogoutAsync();
 }

@@ -1,9 +1,18 @@
-﻿namespace TaskTrackerDesktop.Core.Forms;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public sealed class RegisterForm
+namespace TaskTrackerDesktop.Core.Forms;
+
+public sealed partial class RegisterForm : ObservableObject
 {
-    public string Email { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string Password { get; set; }
+    [ObservableProperty]
+    private string _email;
+
+    [ObservableProperty]
+    private string _firstName;
+
+    [ObservableProperty]
+    private string _lastName;
+
+    [ObservableProperty]
+    private string _password;
 }

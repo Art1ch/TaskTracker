@@ -4,7 +4,8 @@ namespace TaskTrackerDesktop.Core.Interfaces;
 
 public interface INavigationService
 {
-    void NavigateTo(Type pageType);
-    void NavigateToMainShell(object parameter = null);
-    void NavigateToLoginPage();
+    void NavigateTo(string viewName, object parameter = null);
+    void GoBack();
+    bool CanGoBack { get; }
+    void ClearHistory();
 }
