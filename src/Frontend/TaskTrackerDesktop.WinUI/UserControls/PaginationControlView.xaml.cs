@@ -1,7 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using TaskTrackerDesktop.Core.Filters;
-using TaskTrackerDesktop.Core.Models;
 using TaskTrackerDesktop.Core.ViewModels.Base;
 
 namespace TaskTrackerDesktop.WinUI.UserControls;

@@ -1,5 +1,4 @@
-﻿using MapsterMapper;
-using MediatR;
+﻿using MediatR;
 using TaskTracker.Application.Abstractions.Repository;
 
 namespace TaskTracker.Application.Commands.Process.AddUserToProcess;

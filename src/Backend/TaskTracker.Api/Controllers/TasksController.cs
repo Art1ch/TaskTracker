@@ -53,19 +53,6 @@ public class TasksController : ControllerBase
         return Ok(response);
     }
 
-    //[Authorize(Roles = nameof(UserRole.Admin))]
-    [HttpPost("add-user")]
-    public async Task<ActionResult<CreateTaskResponse>> Create([FromBody] CreateTaskRequest request)
-    {
-        var command = _mapper.Map<CreateTaskCommand>(request);
-
-        var result = await _sender.Send(command);
-
-        var response = _mapper.Map<CreateTaskResponse>(result);
-
-        return Ok(response);
-    }
-
     [Authorize(Roles = nameof(UserRole.Admin))]
     [HttpPut]
     public async Task<ActionResult<UpdateTaskResponse>> Update([FromBody] UpdateTaskQuery request)

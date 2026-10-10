@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using MapsterMapper;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading;
 using System.Threading.Tasks;
 using TaskTrackerDesktop.Core.Filters;
 using TaskTrackerDesktop.Core.Interfaces;
