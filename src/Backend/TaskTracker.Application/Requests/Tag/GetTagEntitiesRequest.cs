@@ -1,4 +1,6 @@
-﻿namespace TaskTracker.Application.Requests.Tag;
+﻿using TaskTracker.Application.Requests.Base;
+
+namespace TaskTracker.Application.Requests.Tag;
 
 public sealed record GetTagEntitiesRequest(
     int Page,
@@ -7,4 +9,4 @@ public sealed record GetTagEntitiesRequest(
     DateTime? From,
     DateTime? To,
     string? Name
-);
+) : GetEntitiesRequestBase(Page, PageSize, From, To);

@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using TaskTrackerDesktop.Core.Filters;
-using TaskTrackerDesktop.Core.Models;
+using TaskTrackerDesktop.Core.Responses.User;
 
 namespace TaskTrackerDesktop.Core.Interfaces;
 
 public interface IUserService
 {
-    Task<IEnumerable<UserModel>> GetUsersAsync(UserFilterForm filter, CancellationToken cancellationToken = default);
-    Task<UserModel> GetUserAsync(Guid Id, CancellationToken cancellationToken = default);
+    Task<GetUserResponse> GetUserAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<GetUserEntitiesResponse> GetUsersAsync(UserFilterForm filter, CancellationToken cancellationToken = default);
 }

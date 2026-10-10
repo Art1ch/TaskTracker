@@ -20,10 +20,10 @@ internal sealed class GetProcessEntitiesQueryHandler : IRequestHandler<GetProces
     {
         var filter = _mapper.Map<ProcessFilter>(request);
 
-        var entities = await _repository.GetEntitiesAsync(filter, cancellationToken);
+        var repositoryResult = await _repository.GetEntitiesAsync(filter, cancellationToken);
 
-        var items = _mapper.Map<List<GetProcessEntitiesQueryResultItem>>(entities);
+        var queryResult = _mapper.Map<GetProcessEntitiesQueryResult>(repositoryResult);
 
-        return new GetProcessEntitiesQueryResult(items);
+        return queryResult;
     }
 }

@@ -1,9 +1,10 @@
-﻿using TaskTracker.Application.Requests.Task;
+﻿using TaskTracker.Application.Queries.Task.GetEntities;
+using TaskTracker.Application.Requests.Task;
 using TaskTracker.Core.Enums;
 
 namespace TaskTracker.Application.Validaton.Validators.Task;
 
-public sealed class GetTaskEntitiesQueryValidator : ValidatorBase<GetTaskEntitiesRequest>
+public sealed class GetTaskEntitiesQueryValidator : ValidatorBase<GetTaskEntitiesQuery>
 {
     public GetTaskEntitiesQueryValidator()
     {
@@ -15,7 +16,7 @@ public sealed class GetTaskEntitiesQueryValidator : ValidatorBase<GetTaskEntitie
         ValidateDateRange(x => x.From, x => x.To);
         ValidateDescription(x => x.Description);
         ValidateTitle(x => x.Title);
-        ValidateEnum<TaskState>(x => x.State);
+        ValidateEnum<TaskState>(x => x.TaskState);
         ValidateDeadline(x => x.Deadline);
     }
 }

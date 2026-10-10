@@ -79,7 +79,7 @@ public class TagsController : ControllerBase
 
     [Authorize(Roles = nameof(UserRole.Admin))]
     [HttpDelete]
-    public async Task<ActionResult<DeleteTagResponse>> Delete([FromBody] DeleteTagRequest request)
+    public async Task<ActionResult<DeleteTagResponse>> Delete([FromQuery] DeleteTagRequest request)
     {
         var command = _mapper.Map<DeleteTagCommand>(request);
 

@@ -8,7 +8,7 @@ public sealed class UpdateTaskCommandValidator : ValidatorBase<UpdateTaskCommand
     public UpdateTaskCommandValidator()
     {
         ValidateId(x => x.Id, required: true);
-        ValidateEnum<TaskState>(x => x.State);
+        ValidateEnum<TaskState>(x => x.TaskState);
         ValidateDeadline(x => x.Deadline);
         ValidateId(x => x.AssignedToId);
     }

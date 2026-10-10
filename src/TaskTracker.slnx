@@ -7,6 +7,7 @@
   </Folder>
   <Folder Name="/Frontend/">
     <Project Path="Frontend/TaskTrackerDesktop.Core/TaskTrackerDesktop.Core.csproj" Id="f690acd4-4b1f-4ff4-b0b6-60351d8807a3" />
+    <Project Path="Frontend/TaskTrackerDesktop.Infrastructure/TaskTrackerDesktop.Infrastructure.csproj" Id="d4272b86-c944-4920-a8d5-7216dc5b9bf5" />
     <Project Path="Frontend/TaskTrackerDesktop.WinUI/TaskTrackerDesktop.WinUI.csproj" Id="4fda76fc-fcf4-48fe-8ec7-2947dfdb7cd7">
       <Platform Project="x64" />
       <Deploy />

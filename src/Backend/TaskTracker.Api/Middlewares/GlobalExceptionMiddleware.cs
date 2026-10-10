@@ -47,12 +47,6 @@ internal sealed class GlobalExceptionMiddleware
                 detail = string.Join(";", validationException.Errors.Select(x => _stringLocalizer.GetString(x.ErrorCode)));
                 break;
 
-            case InvalidOperationException invalidOperationException:
-                status = StatusCodes.Status404NotFound;
-                errorTitle = _stringLocalizer.GetString("NOT_FOUND_ERROR");
-                detail = invalidOperationException.Message;
-                break;
-
             default:
                 status = StatusCodes.Status500InternalServerError;
                 errorTitle = _stringLocalizer.GetString("SERVER_ERROR");

@@ -7,5 +7,5 @@ public sealed record GetUserEntitiesResponseItem(
     string FirstName,
     string LastName,
     string Email,
-    UserRole Role
+    UserRole UserRole
 );

@@ -6,7 +6,7 @@ public sealed record GetTaskQueryResult(
     Guid Id,
     string Title,
     string Description,
-    TaskState Status,
+    TaskState TaskState,
     DateTime? Deadline,
     Guid ProcessId,
     Guid CreatedById

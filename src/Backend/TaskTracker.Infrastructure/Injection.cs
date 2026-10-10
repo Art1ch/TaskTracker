@@ -24,8 +24,12 @@ public static class Injection
             .AddServices();
     }
 
-    private static IServiceCollection AddHelpers(this IServiceCollection services) =>
-        services.AddTransient<JwtTokenGeneratorHelper>();
+    private static IServiceCollection AddHelpers(this IServiceCollection services)
+    {
+        return services
+            .AddTransient<JwtTokenGeneratorHelper>()
+            .AddTransient<RefreshTokenGeneratorHelper>();
+    }
 
     private static IServiceCollection AddApplicationDbContext(this IServiceCollection services, ApplicationDbSettings settings) =>
         services.AddDbContext<ApplicationDbContext>(x => x.UseNpgsql(settings.ConnectionString));
@@ -37,9 +41,9 @@ public static class Injection
             options.Password.RequiredLength = 6;
             options.Password.RequireDigit = true;
             options.Password.RequireUppercase = true;
-            options.Password.RequireNonAlphanumeric = true;
+            options.Password.RequireNonAlphanumeric = false;
             options.User.RequireUniqueEmail = true;
-            options.SignIn.RequireConfirmedEmail = true;
+            options.SignIn.RequireConfirmedEmail = false;
         })
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();

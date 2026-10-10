@@ -10,7 +10,7 @@ public sealed class GetUserEntitiesQueryValidator : ValidatorBase<GetUserEntitie
         ValidatePage(x => x.Page);
         ValidatePageSize(x => x.PageSize);
         ValidateDateRange(x => x.From, x => x.To);
-        ValidateEnum<UserRole>(x => x.Role);
+        ValidateEnum<UserRole>(x => x.UserRole);
         ValidateFirstName(x => x.FirstName);
         ValidateLastName(x => x.LastName);
     }

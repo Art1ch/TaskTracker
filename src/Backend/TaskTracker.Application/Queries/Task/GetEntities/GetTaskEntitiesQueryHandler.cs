@@ -20,10 +20,10 @@ internal sealed class GetTaskEntitiesQueryHandler : IRequestHandler<GetTaskEntit
     {
         var filter = _mapper.Map<TaskFilter>(request);
 
-        var entities = await _repository.GetEntitiesAsync(filter, cancellationToken);
+        var repositoryResult = await _repository.GetEntitiesAsync(filter, cancellationToken);
 
-        var items = _mapper.Map<List<GetTaskEntitiesQueryResultItem>>(entities);
+        var queryResult = _mapper.Map<GetTaskEntitiesQueryResult>(repositoryResult);
 
-        return new GetTaskEntitiesQueryResult(items);
+        return queryResult;
     }
 }

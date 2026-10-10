@@ -1,0 +1,3 @@
+﻿namespace TaskTracker.Application.Commands.Process.AddUserToProcess;
+
+public sealed record AddUserToProcessCommandResult;

@@ -7,7 +7,7 @@ public sealed record UpdateTaskCommand(
     Guid Id,
     string Title,
     string Description,
-    TaskState State,
+    TaskState TaskState,
     Guid AssignedToId,
     DateTime? Deadline
 ) : IRequest<UpdateTaskCommandResult>;

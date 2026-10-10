@@ -75,7 +75,7 @@ public class RemarksController : ControllerBase
     }
 
     [HttpDelete]
-    public async Task<ActionResult<DeleteRemarkResponse>> Delete([FromBody] DeleteRemarkRequest request)
+    public async Task<ActionResult<DeleteRemarkResponse>> Delete([FromQuery] DeleteRemarkRequest request)
     {
         var command = _mapper.Map<DeleteRemarkCommand>(request);
 

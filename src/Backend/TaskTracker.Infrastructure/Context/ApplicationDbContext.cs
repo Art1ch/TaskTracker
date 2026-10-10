@@ -13,6 +13,7 @@ internal sealed class ApplicationDbContext : IdentityDbContext<UserEntity, Ident
     }
 
     public DbSet<ProcessEntity> Processes { get; set; }
+    public DbSet<TaskEntity> Tasks { get; set; }
     public DbSet<TagEntity> Tags { get; set; }
     public DbSet<RemarkEntity> Remarks { get; set; }
 

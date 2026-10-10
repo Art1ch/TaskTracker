@@ -1,11 +1,16 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 
 namespace TaskTrackerDesktop.Core.Models;
 
-public sealed class ProcessModel
+public sealed partial class ProcessModel : ModelBase
 {
-    public Guid Id { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public bool IsActive { get; set; }
+    [ObservableProperty]
+    private string _name;
+
+    [ObservableProperty]
+    private string _description;
+
+    [ObservableProperty]
+    private bool _isActive;
 }

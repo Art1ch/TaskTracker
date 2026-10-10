@@ -6,7 +6,7 @@ public class TaskEntity : EntityBase
 {
     public string Title { get; set; }
     public string Description { get; set; }
-    public TaskState State { get; set; }
+    public TaskState TaskState { get; set; }
     public DateTime? Deadline { get; set; }
     public Guid ProcessId { get; set; }
     public Guid CreatedById { get; set; }

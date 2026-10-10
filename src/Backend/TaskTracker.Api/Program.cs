@@ -16,13 +16,14 @@ public class Program
 
         var jwtSettings = builder.ConfigureJwtSettings();
         var applicationDbSettings = builder.ConfigureApplicationDbSettings();
+        var refreshTokenSettings = builder.ConfigureRefreshTokenSettings();
 
-        builder.Services.AddJwtAuthentication(jwtSettings);
 
         builder.Services
             .AddApplicationLayer()
             .AddInfrastructureLayer(applicationDbSettings);
 
+        builder.Services.AddJwtAuthentication(jwtSettings);
         builder.Services.AddApiLocalization();
 
         var app = builder.Build();

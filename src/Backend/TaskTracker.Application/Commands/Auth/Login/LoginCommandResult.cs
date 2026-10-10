@@ -2,6 +2,7 @@
 
 public sealed record LoginCommandResult(
     bool IsSucceed,
-    string? Token,
+    string? AccessToken,
+    string? RefreshToken,
     string? ErrorCode
 );

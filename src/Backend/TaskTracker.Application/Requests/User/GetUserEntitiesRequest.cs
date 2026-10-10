@@ -1,4 +1,5 @@
-﻿using TaskTracker.Core.Enums;
+﻿using TaskTracker.Application.Requests.Base;
+using TaskTracker.Core.Enums;
 
 namespace TaskTracker.Application.Requests.User;
 
@@ -7,7 +8,7 @@ public sealed record GetUserEntitiesRequest(
     int PageSize,
     DateTime? From,
     DateTime? To,
-    UserRole? Role,
+    UserRole? UserRole,
     string? FirstName,
     string? LastName
-);
+) : GetEntitiesRequestBase(Page, PageSize, From, To);

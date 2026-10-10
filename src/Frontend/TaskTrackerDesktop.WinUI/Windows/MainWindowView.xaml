@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="TaskTrackerDesktop.WinUI.Windows.MainWindowView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TaskTrackerDesktop.WinUI.Windows"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="MainWindowView">
+
+    <Grid>
+        <NavigationView
+                IsBackEnabled="False"
+                IsSettingsVisible="False"
+                PaneDisplayMode="Left"
+                SelectionChanged="NavigationView_SelectionChanged">
+
+            <NavigationView.MenuItems>
+                <NavigationViewItem 
+                        Content="Dashboard"
+                        Tag="DashboardPage">
+                    <NavigationViewItem.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Assets/icons8-dashboard-100.png" ShowAsMonochrome="True"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem 
+                        Content="Tasks"
+                        Tag="TasksPage">
+                    <NavigationViewItem.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Assets/icons8-task-100.png" ShowAsMonochrome="True"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem 
+                        Content="Processes"
+                        Tag="ProcessesPage">
+                    <NavigationViewItem.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Assets/icons8-process-100.png" ShowAsMonochrome="True"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem 
+                        Content="Users" 
+                        Tag="UsersPage">
+                    <NavigationViewItem.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Assets/icons8-user-100.png" ShowAsMonochrome="True"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+
+            <NavigationView.PaneFooter>
+                <Button 
+                    Content="Logout" 
+                    Command="{x:Bind ViewModel.LogoutCommand}"
+                    Foreground="{ThemeResource SystemControlForegroundAccentBrush}"/>
+            </NavigationView.PaneFooter>
+
+            <Frame
+                    x:Name="ContentFrame"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch" />
+
+        </NavigationView>
+    </Grid>
+</Window>

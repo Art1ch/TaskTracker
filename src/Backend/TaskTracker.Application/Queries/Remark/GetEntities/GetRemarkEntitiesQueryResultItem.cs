@@ -1,7 +1,11 @@
-﻿namespace TaskTracker.Application.Queries.Remark.GetEntities;
+﻿using TaskTracker.Core.Enums;
+
+namespace TaskTracker.Application.Queries.Remark.GetEntities;
 
 public sealed record GetRemarkEntitiesQueryResultItem(
     Guid Id,
     string Text,
-    Guid UserId
+    string UsersFirstName,
+    string UsersLastName,
+    UserRole UserRole
 );

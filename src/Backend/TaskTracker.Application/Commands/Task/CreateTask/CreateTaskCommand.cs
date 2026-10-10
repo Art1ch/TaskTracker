@@ -9,6 +9,6 @@ public sealed record CreateTaskCommand(
     Guid AssignedToId,
     string Title,
     string Description,
-    TaskState State,
+    TaskState TaskState,
     DateTime? Deadline
 ) : IRequest<CreateTaskCommandResult>;

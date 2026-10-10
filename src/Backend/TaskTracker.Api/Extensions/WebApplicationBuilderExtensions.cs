@@ -11,6 +11,9 @@ internal static class WebApplicationBuilderExtensions
     internal static ApplicationDbSettings ConfigureApplicationDbSettings(this WebApplicationBuilder builder) =>
         builder.ConfigureSettings<ApplicationDbSettings>();
 
+    internal static RefreshTokenSettings ConfigureRefreshTokenSettings(this WebApplicationBuilder builder) =>
+        builder.ConfigureSettings<RefreshTokenSettings>();
+
     private static T ConfigureSettings<T>(this WebApplicationBuilder builder) where T : class
     {
         var sectionName = typeof(T).Name;

@@ -1,4 +1,6 @@
-﻿namespace TaskTracker.Application.Requests.Process;
+﻿using TaskTracker.Application.Requests.Base;
+
+namespace TaskTracker.Application.Requests.Process;
 
 public sealed record GetProcessEntitiesRequest(
     int Page,
@@ -8,4 +10,4 @@ public sealed record GetProcessEntitiesRequest(
     string? Name,
     string? Description,
     bool? IsActive
-);
+) : GetEntitiesRequestBase(Page, PageSize, From, To);

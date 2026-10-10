@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TaskTracker.Application.Abstractions.Repository;
 using TaskTracker.Application.Filters;
+using TaskTracker.Application.Results;
 using TaskTracker.Core.Entities;
 using TaskTracker.Infrastructure.Context;
 
@@ -13,7 +14,25 @@ internal sealed class ProcessRepository : RepositoryBase<ProcessEntity>, IProces
         
     }
 
-    public async Task<IEnumerable<ProcessEntity>> GetEntitiesAsync(ProcessFilter filter, CancellationToken cancellationToken)
+    public async Task AddUserToProcessAsync(Guid processId, Guid userId, CancellationToken cancellationToken = default)
+    {
+        var process = await _dbSet
+            .Include(x => x.Users)
+            .FirstAsync(x => x.Id == processId, cancellationToken);
+
+        if (process.Users.Any(x => x.Id == userId))
+            throw new InvalidOperationException();
+
+        var user = await _context
+            .Set<UserEntity>()
+            .FirstAsync(x => x.Id == userId, cancellationToken);
+
+        process.Users.Add(user);
+
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task<GetProcessEntitiesResult> GetEntitiesAsync(ProcessFilter filter, CancellationToken cancellationToken = default)
     {
         var query = _dbSet.AsQueryable();
 
@@ -34,10 +53,18 @@ internal sealed class ProcessRepository : RepositoryBase<ProcessEntity>, IProces
 
         query = query.OrderBy(x => x.CreatedAt);
 
+        var totalCount = await query.CountAsync(cancellationToken);
+        var totalPages = (int)Math.Ceiling(totalCount / (double)filter.PageSize);
+
+        var hasPreviousPage = filter.Page > 1;
+        var hasNextPage = filter.Page < totalPages;
+
         query = query
             .Skip((filter.Page - 1) * filter.PageSize)
             .Take(filter.PageSize);
 
-        return await query.ToListAsync(cancellationToken);
+        var processes = await query.ToListAsync(cancellationToken);
+
+        return new GetProcessEntitiesResult(processes, filter.Page, filter.PageSize, totalPages, totalCount, hasNextPage, hasPreviousPage);
     }
 }

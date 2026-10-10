@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="TaskTrackerDesktop.WinUI.UserControls.PaginationControlView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TaskTrackerDesktop.WinUI.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Border 
+        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+        BorderThickness="1"
+        CornerRadius="8"
+        Padding="6,4"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Margin="0,8">
+
+        <StackPanel 
+            Orientation="Horizontal"
+            Spacing="12"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+
+            <Button
+                Command="{x:Bind PaginationViewModel.GoToPreviousPageCommand}"
+                IsEnabled="{x:Bind PaginationViewModel.HasPreviousPage, Mode=OneWay}"
+                Style="{ThemeResource SubtitleTextBlockStyle}"
+                Padding="8">
+                <Button.Content>
+                    <FontIcon Glyph="&#xE96F;" 
+                        FontFamily="{ThemeResource SymbolThemeFontFamily}" 
+                        FontSize="14"/>   
+                </Button.Content>
+            </Button>
+
+            <AppBarSeparator />
+
+            <StackPanel 
+                Orientation="Horizontal" 
+                VerticalAlignment="Center" 
+                Spacing="4">
+                
+                <TextBlock 
+                    Style="{ThemeResource CaptionTextBlockStyle}" 
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}" 
+                    Text="Page" 
+                    VerticalAlignment="Center"/>
+
+                <TextBlock 
+                    Style="{ThemeResource BodyStrongTextBlockStyle}" 
+                    Text="{x:Bind FilterForm.Page, Mode=OneWay}"
+                    Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
+                    VerticalAlignment="Center"
+                    Margin="2,0"/>
+
+                <TextBlock 
+                    Style="{ThemeResource CaptionTextBlockStyle}" 
+                    Text="of" 
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}" 
+                    VerticalAlignment="Center"/>
+
+                <TextBlock 
+                    Style="{ThemeResource BodyStrongTextBlockStyle}" 
+                    Text="{x:Bind PaginationViewModel.TotalPages, Mode=OneWay}" 
+                    Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                    VerticalAlignment="Center"
+                    Margin="2,0"/>
+                
+            </StackPanel>
+
+            <AppBarSeparator />
+
+            <Button
+                Command="{x:Bind PaginationViewModel.GoToNextPageCommand}"
+                IsEnabled="{x:Bind PaginationViewModel.HasNextPage, Mode=OneWay}"
+                Padding="8">
+                <Button.Content>
+                    <FontIcon Glyph="&#xE970;" 
+                              FontFamily="{ThemeResource SymbolThemeFontFamily}" 
+                              FontSize="14"/>
+                </Button.Content>
+            </Button>
+
+        </StackPanel>
+    </Border>
+</UserControl>

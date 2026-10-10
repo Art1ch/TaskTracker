@@ -8,7 +8,7 @@ public sealed class CreateTaskCommandValidator : ValidatorBase<CreateTaskCommand
     public CreateTaskCommandValidator()
     {
         ValidateTitle(x => x.Title, required: true);
-        ValidateEnum<TaskState>(x => x.State, required: true);
+        ValidateEnum<TaskState>(x => x.TaskState, required: true);
         ValidateDeadline(x => x.Deadline);
         ValidateId(x => x.ProcessId, required: true);
         ValidateId(x => x.CreatedById, required: true);

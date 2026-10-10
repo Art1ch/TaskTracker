@@ -20,10 +20,10 @@ internal sealed class GetRemarkEntitiesQueryHandler : IRequestHandler<GetRemarkE
     {
         var filter = _mapper.Map<RemarkFilter>(request);
 
-        var entities = await _repository.GetEntitiesAsync(filter, cancellationToken);
+        var repositoryResult = await _repository.GetEntitiesAsync(filter, cancellationToken);
 
-        var items = _mapper.Map<List<GetRemarkEntitiesQueryResultItem>>(entities);
+        var queryResult = _mapper.Map<GetRemarkEntitiesQueryResult>(repositoryResult);
 
-        return new GetRemarkEntitiesQueryResult(items);
+        return queryResult;
     }
 }

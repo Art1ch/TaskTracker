@@ -20,10 +20,10 @@ internal sealed class GetUserEntitiesQueryHandler : IRequestHandler<GetUserEntit
     {
         var filter = _mapper.Map<UserFilter>(request);
 
-        var entities = await _repository.GetEntitiesAsync(filter, cancellationToken);
+        var repositoryResult = await _repository.GetEntitiesAsync(filter, cancellationToken);
 
-        var items = _mapper.Map<List<GetUserEntitiesQueryResultItem>>(entities);
+        var queryResult = _mapper.Map<GetUserEntitiesQueryResult>(repositoryResult);
 
-        return new GetUserEntitiesQueryResult(items);
+        return queryResult;
     }
 }

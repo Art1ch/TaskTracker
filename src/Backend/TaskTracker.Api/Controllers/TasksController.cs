@@ -20,11 +20,13 @@ public class TasksController : ControllerBase
 {
     private readonly ISender _sender;
     private readonly IMapper _mapper;
+    private readonly ILogger<TasksController> _logger;
 
-    public TasksController(ISender sender, IMapper mapper)
+    public TasksController(ISender sender, IMapper mapper, ILogger<TasksController> logger)
     {
         _sender = sender;
         _mapper = mapper;
+        _logger = logger;
     }
 
     [HttpGet]
@@ -51,8 +53,8 @@ public class TasksController : ControllerBase
         return Ok(response);
     }
 
-    [Authorize(Roles = nameof(UserRole.Admin))]
-    [HttpPost]
+    //[Authorize(Roles = nameof(UserRole.Admin))]
+    [HttpPost("add-user")]
     public async Task<ActionResult<CreateTaskResponse>> Create([FromBody] CreateTaskRequest request)
     {
         var command = _mapper.Map<CreateTaskCommand>(request);
@@ -79,7 +81,7 @@ public class TasksController : ControllerBase
 
     [Authorize(Roles = nameof(UserRole.Admin))]
     [HttpDelete]
-    public async Task<ActionResult<DeleteTaskResponse>> Delete([FromBody] DeleteTaskRequest request)
+    public async Task<ActionResult<DeleteTaskResponse>> Delete([FromQuery] DeleteTaskRequest request)
     {
         var command = _mapper.Map<DeleteTaskCommand>(request);
 

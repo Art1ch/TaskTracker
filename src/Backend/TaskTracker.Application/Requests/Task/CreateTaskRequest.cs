@@ -5,7 +5,7 @@ namespace TaskTracker.Application.Requests.Task;
 public sealed record CreateTaskRequest(
     string Title,
     string Description,
-    TaskState State,
+    TaskState TaskState,
     DateTime? Deadline,
     Guid ProcessId,
     Guid CreatedById,

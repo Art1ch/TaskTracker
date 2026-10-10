@@ -1,7 +1,9 @@
-﻿namespace TaskTrackerDesktop.Core.Interfaces;
+﻿using System.Threading.Tasks;
+
+namespace TaskTrackerDesktop.Core.Interfaces;
 
 public interface IDialogService
 {
-    void ShowDialog(string message);
-    void ShowError(string errorMessage);
+    Task ShowDialog(string message);
+    Task ShowError(string errorMessage);
 }

@@ -12,6 +12,6 @@ public sealed record TaskFilter(
     DateTime? To,
     string? Title,
     string? Description,
-    TaskState? State,
+    TaskState? TaskState,
     DateTime? Deadline
 ) : FilterBase(Page, PageSize, From, To);

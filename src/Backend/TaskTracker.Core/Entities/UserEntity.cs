@@ -10,6 +10,8 @@ public class UserEntity : IdentityUser<Guid>
     public UserRole UserRole { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
+    public string? RefreshToken { get; set; }
+    public DateTime? RefreshTokenExpiryDate { get; set; }
 
     public ICollection<ProcessEntity> Processes { get; set; }
     public ICollection<TaskEntity> CreatedTasks { get; set; }

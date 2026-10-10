@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="TaskTrackerDesktop.WinUI.Pages.RegisterPageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TaskTrackerDesktop.WinUI.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <StackPanel Width="320"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Spacing="12">
+
+            <TextBlock Text="Registration"
+                       FontSize="24"
+                       HorizontalAlignment="Center"/>
+
+            <TextBox 
+                Header="Email"
+                Text="{x:Bind ViewModel.RegisterForm.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBox 
+                Header="First name"
+                Text="{x:Bind ViewModel.RegisterForm.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBox 
+                Header="Last name"
+                Text="{x:Bind ViewModel.RegisterForm.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <PasswordBox Header="Password"
+                         PasswordChanged="PasswordBox_PasswordChanged"/>
+
+            <Button 
+                Content="Register"
+                HorizontalAlignment="Stretch"
+                Command="{x:Bind ViewModel.RegisterCommand}"/>
+
+            <ProgressRing 
+                IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}"     
+                HorizontalAlignment="Center"/>
+
+            <HyperlinkButton 
+                HorizontalAlignment="Center"
+                Content="Go to log in page"
+                Click="HyperlinkButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

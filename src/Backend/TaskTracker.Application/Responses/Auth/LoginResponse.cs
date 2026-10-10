@@ -3,5 +3,6 @@
 public sealed record LoginResponse(
     bool IsSucceed,
     string? ErrorMessage,
-    string? Token
+    string? AccessToken,
+    string? RefreshToken
 );

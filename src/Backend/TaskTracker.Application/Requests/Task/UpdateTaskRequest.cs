@@ -6,7 +6,7 @@ public sealed record UpdateTaskQuery(
     Guid Id,
     string? Title,
     string? Description,
-    TaskState? State,
+    TaskState? TaskState,
     DateTime? Deadline,
     Guid? AssignedToId
 );

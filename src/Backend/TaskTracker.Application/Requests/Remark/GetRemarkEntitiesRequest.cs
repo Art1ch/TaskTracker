@@ -1,4 +1,6 @@
-﻿namespace TaskTracker.Application.Requests.Remark;
+﻿using TaskTracker.Application.Requests.Base;
+
+namespace TaskTracker.Application.Requests.Remark;
 
 public sealed record GetRemarkEntitiesRequest(
     int Page,
@@ -7,4 +9,4 @@ public sealed record GetRemarkEntitiesRequest(
     DateTime? From,
     DateTime? To,
     string? Text
-);
+) : GetEntitiesRequestBase(Page, PageSize, From, To);

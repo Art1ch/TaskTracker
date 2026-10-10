@@ -43,12 +43,15 @@ public abstract class ValidatorBase<T> : AbstractValidator<T>
         if (required)
         {
             rule
-                .NotEmpty()
+                .NotNull()
+                .NotEqual(Guid.Empty)
                 .WithErrorCode(ValidationErrorCodes.IdRequired);
+
+            return;
         }
 
         rule
-            .Must(id => !id.HasValue || id.Value != Guid.Empty)
+            .NotEqual(Guid.Empty)
             .WithErrorCode(ValidationErrorCodes.InvalidId);
     }
 

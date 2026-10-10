@@ -6,6 +6,6 @@ public sealed record GetUserResponse(
     Guid Id,
     string FirstName,
     string LastName,
-    UserRole Role,
+    UserRole UserRole,
     string Email
 );

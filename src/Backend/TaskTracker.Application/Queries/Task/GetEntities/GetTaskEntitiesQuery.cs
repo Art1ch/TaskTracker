@@ -8,7 +8,7 @@ public sealed record GetTaskEntitiesQuery(
     int PageSize,
     string? Title,
     string? Description,
-    TaskState? State,
+    TaskState? TaskState,
     DateTime? Deadline,
     Guid? ProcessId,
     Guid? CreatedById,

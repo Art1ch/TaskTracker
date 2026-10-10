@@ -10,5 +10,5 @@ public sealed record GetUserEntitiesQuery(
     DateTime? To,
     string? FirstName,
     string? LastName,
-    UserRole? Role
+    UserRole? UserRole
 ) : IRequest<GetUserEntitiesQueryResult>;

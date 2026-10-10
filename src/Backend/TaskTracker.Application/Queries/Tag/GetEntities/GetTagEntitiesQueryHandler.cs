@@ -20,10 +20,10 @@ internal sealed class GetTagEntitiesQueryHandler : IRequestHandler<GetTagEntitie
     {
         var filter = _mapper.Map<TagFilter>(request);
 
-        var entities = await _repository.GetEntitiesAsync(filter, cancellationToken);
+        var repositoryResult = await _repository.GetEntitiesAsync(filter, cancellationToken);
 
-        var items = _mapper.Map<List<GetTagEntitiesQueryResultItem>>(entities);
+        var queryResult = _mapper.Map<GetTagEntitiesQueryResult>(repositoryResult);
 
-        return new GetTagEntitiesQueryResult(items);
+        return queryResult;
     }
 }

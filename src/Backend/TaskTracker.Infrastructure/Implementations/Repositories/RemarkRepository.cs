@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TaskTracker.Application.Abstractions.Repository;
 using TaskTracker.Application.Filters;
+using TaskTracker.Application.Results;
+using TaskTracker.Application.Results.Items;
 using TaskTracker.Core.Entities;
 using TaskTracker.Infrastructure.Context;
 
@@ -10,10 +12,10 @@ internal sealed class RemarkRepository : RepositoryBase<RemarkEntity>, IRemarkRe
 {
     public RemarkRepository(ApplicationDbContext context) : base(context)
     {
-        
+
     }
 
-    public async Task<IEnumerable<RemarkEntity>> GetEntitiesAsync(RemarkFilter filter, CancellationToken cancellationToken)
+    public async Task<GetRemarkEntitiesResult> GetEntitiesAsync(RemarkFilter filter, CancellationToken cancellationToken = default)
     {
         var query = _dbSet.AsQueryable();
 
@@ -31,10 +33,25 @@ internal sealed class RemarkRepository : RepositoryBase<RemarkEntity>, IRemarkRe
 
         query = query.OrderBy(x => x.CreatedAt);
 
-        query = query
-            .Skip((filter.Page - 1) * filter.PageSize)
-            .Take(filter.PageSize);
+        var totalCount = await query.CountAsync();
+        var totalPages = (int)Math.Ceiling(totalCount / (double)filter.PageSize);
 
-        return await query.ToListAsync(cancellationToken);
+        var hasPreviousPage = filter.Page > 1;
+        var hasNextPage = filter.Page < totalPages;
+
+        var itemQuery = query
+            .Skip((filter.Page - 1) * filter.PageSize)
+            .Take(filter.PageSize)
+            .Select(x => new RemarkItem(
+                x.Id,
+                x.Text,
+                x.User.FirstName,
+                x.User.LastName,
+                x.User.UserRole
+            ));
+        
+        var remarks = await itemQuery.ToListAsync(cancellationToken);
+
+        return new GetRemarkEntitiesResult(remarks, filter.Page, filter.PageSize, totalPages, totalCount, hasNextPage, hasPreviousPage);
     }
 }

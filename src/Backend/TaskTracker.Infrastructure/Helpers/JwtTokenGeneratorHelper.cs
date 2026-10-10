@@ -22,21 +22,20 @@ internal sealed class JwtTokenGeneratorHelper
         var claims = new[]
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Role, nameof(user.UserRole)),
+            new Claim(ClaimTypes.Role, user.UserRole.ToString()),
             new Claim(ClaimTypes.Email, user.Email!),
             new Claim(ClaimTypes.Name, user.FirstName),
             new Claim(ClaimTypes.Surname, user.LastName),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-        }; ;
+        }; 
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
         var token = new JwtSecurityToken(
             issuer: _jwtSettings.Issuer,
             audience: _jwtSettings.Audience,
             claims: claims,
-            expires: DateTime.UtcNow.AddDays(_jwtSettings.ExpiresAtDays),
+            expires: DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiresAtMinutes),
             signingCredentials: creds
         );
 

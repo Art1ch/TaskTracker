@@ -1,4 +1,5 @@
-﻿using TaskTracker.Core.Enums;
+﻿using TaskTracker.Application.Requests.Base;
+using TaskTracker.Core.Enums;
 
 namespace TaskTracker.Application.Requests.Task;
 
@@ -12,6 +13,6 @@ public sealed record GetTaskEntitiesRequest(
     DateTime? To,
     string? Title,
     string? Description,
-    TaskState? State,
+    TaskState? TaskState,
     DateTime? Deadline
-);
+) : GetEntitiesRequestBase(Page, PageSize, From, To);

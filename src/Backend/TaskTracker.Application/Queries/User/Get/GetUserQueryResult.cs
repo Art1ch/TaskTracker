@@ -6,5 +6,5 @@ public sealed record GetUserQueryResult(
     Guid Id,
     string FirstName,
     string LastName,
-    UserRole Role
+    UserRole UserRole
 );
