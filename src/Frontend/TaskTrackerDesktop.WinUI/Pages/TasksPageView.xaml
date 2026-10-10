@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="TaskTrackerDesktop.WinUI.Pages.TasksPageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TaskTrackerDesktop.WinUI.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:userControls="using:TaskTrackerDesktop.WinUI.UserControls"
+    xmlns:models="using:TaskTrackerDesktop.Core.Models">
+
+    <Grid>
+        <NavigationView
+            IsBackEnabled="False"
+            IsSettingsVisible="False"
+            PaneDisplayMode="Top"
+            SelectionChanged="NavigationView_SelectionChanged">
+
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="All Tasks" Tag="AllTasks">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xF168;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem Content="My Tasks" Tag="MyTasks">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE77B;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+            </NavigationView.MenuItems>
+
+            <Grid Padding="12">
+                <ListView ItemsSource="{x:Bind ViewModel.TaskModels, Mode=OneWay}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models:TaskModel">
+                            <userControls:TaskCardView 
+                                TaskModel="{x:Bind}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+        </NavigationView>
+    </Grid>
+</Page>

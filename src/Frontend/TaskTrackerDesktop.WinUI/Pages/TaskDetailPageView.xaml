@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="TaskTrackerDesktop.WinUI.Pages.TaskDetailPageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TaskTrackerDesktop.WinUI.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:TaskTrackerDesktop.WinUI.UserControls"
+    xmlns:models="using:TaskTrackerDesktop.Core.Models"
+    mc:Ignorable="d">
+
+    <Grid Margin="24" RowDefinitions="Auto, *, Auto">
+
+        <StackPanel Grid.Row="0" Spacing="8" Margin="0,0,0,16">
+
+            <FontIcon Glyph="&#xE80A;" 
+                      FontFamily="{ThemeResource SymbolThemeFontFamily}" 
+                      HorizontalAlignment="Center" 
+                      FontSize="24" 
+                      Foreground="{ThemeResource SystemControlForegroundAccentBrush}"/>
+
+            <TextBlock HorizontalAlignment="Center"
+                       Text="{x:Bind ViewModel.TaskModel.Title, Mode=OneWay}"
+                       Style="{ThemeResource SubtitleTextBlockStyle}"
+                       FontWeight="SemiBold"
+                       TextWrapping="Wrap"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="4">
+                <TextBlock Text="Deadline: " Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                <TextBlock Text="{x:Bind ViewModel.TaskModel.Deadline, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}"/>
+            </StackPanel>
+
+            <TextBlock HorizontalAlignment="Center"
+                       Text="{x:Bind ViewModel.TaskModel.TaskState, Mode=OneWay}"
+                       Style="{ThemeResource CaptionTextBlockStyle}" 
+                       Foreground="{ThemeResource SystemControlForegroundAccentBrush}"/>
+
+            <Border Height="1" 
+                    Background="{ThemeResource DividerStrokeColorDefaultBrush}" 
+                    HorizontalAlignment="Stretch"
+                    Margin="0,4"/>
+
+            <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <TextBlock HorizontalAlignment="Center"
+                           Text="{x:Bind ViewModel.TaskModel.Description, Mode=OneWay}"
+                           Style="{ThemeResource BodyTextBlockStyle}"
+                           Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                           TextWrapping="Wrap"/>
+            </ScrollViewer>
+
+            <Border Height="1" 
+                    Background="{ThemeResource DividerStrokeColorDefaultBrush}" 
+                    HorizontalAlignment="Stretch"
+                    Margin="0,4"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Margin="0,0,0,16">
+            <ListView ItemsSource="{x:Bind ViewModel.RemarkModels, Mode=OneWay}"
+                      SelectionMode="None"
+                      HorizontalContentAlignment="Stretch">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:RemarkModel">
+                        <userControls:RemarkCardView RemarkModel="{x:Bind}" Margin="0,0,0,8"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <userControls:PaginationControlView 
+            Grid.Row="2" 
+            FilterForm="{x:Bind ViewModel.Filter, Mode=OneWay}" 
+            PaginationViewModel="{x:Bind ViewModel}"/>
+
+    </Grid>
+</Page>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="TaskTrackerDesktop.WinUI.UserControls.ProcessCardView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TaskTrackerDesktop.WinUI.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:TaskTrackerDesktop.WinUI.Converters"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <converters:BoolToStatusTextConverter x:Key="StatusConverter"/>
+    </UserControl.Resources>
+
+    <Border 
+        Background="{ThemeResource LayerFillColorDefaultBrush}"
+        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+        BorderThickness="1"
+        Height="200"
+        CornerRadius="12"
+        Padding="16"
+        Margin="8">
+
+        <Grid HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <FontIcon 
+                Grid.Row="0"
+                Glyph="&#xE80A;" 
+                FontFamily="{ThemeResource SymbolThemeFontFamily}"/>
+
+            <TextBlock 
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                Text="{x:Bind ProcessModel.Name, Mode=OneWay}"
+                Style="{ThemeResource BodyStrongTextBlockStyle}"
+                Margin="0,4,0,0"/>
+
+            <Border 
+                Grid.Row="2"
+                Height="1" 
+                Background="{ThemeResource DividerStrokeColorDefaultBrush}" 
+                HorizontalAlignment="Stretch"
+                Margin="0,8"/>
+
+            <TextBlock 
+                Grid.Row="3"
+                HorizontalAlignment="Center"
+                Text="{x:Bind ProcessModel.IsActive, Mode=OneWay, Converter={StaticResource StatusConverter}}"
+                Style="{ThemeResource CaptionTextBlockStyle}" 
+                Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
+                Margin="0,0,0,8"/>
+
+            <ScrollViewer 
+                Grid.Row="4" 
+                VerticalScrollBarVisibility="Auto" 
+                HorizontalScrollBarVisibility="Disabled">
+
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    Text="{x:Bind ProcessModel.Description, Mode=OneWay}"
+                    Style="{ThemeResource CaptionTextBlockStyle}"
+                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                    TextWrapping="Wrap"/>
+            </ScrollViewer>
+
+        </Grid>
+
+    </Border>
+</UserControl>

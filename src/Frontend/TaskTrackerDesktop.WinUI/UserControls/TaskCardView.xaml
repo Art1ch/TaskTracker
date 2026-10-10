@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="TaskTrackerDesktop.WinUI.UserControls.TaskCardView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TaskTrackerDesktop.WinUI.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Border 
+        Background="{ThemeResource LayerFillColorDefaultBrush}"
+        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+        BorderThickness="1"
+        Height="200"
+        CornerRadius="12"
+        Padding="16"
+        Margin="8">
+
+        <Grid HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <FontIcon 
+                Grid.Row="0"
+                Glyph="&#xE80A;" 
+                FontFamily="{ThemeResource SymbolThemeFontFamily}"/>
+
+            <TextBlock 
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                Text="{x:Bind TaskModel.Title, Mode=OneWay}"
+                Style="{ThemeResource BodyStrongTextBlockStyle}"
+                Margin="0,4,0,0"/>
+
+            <StackPanel 
+                Grid.Row="2"
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+
+                <TextBlock 
+                    HorizontalAlignment="Center"
+                    Text="Deadline: "
+                    Style="{ThemeResource BodyStrongTextBlockStyle}"
+                    Margin="0,4,0,0"/>  
+
+
+                <TextBlock 
+                    HorizontalAlignment="Center"
+                    Text="{x:Bind TaskModel.Deadline, Mode=OneWay}"
+                    Style="{ThemeResource BodyStrongTextBlockStyle}"
+                    Margin="0,4,0,0"/>  
+
+            </StackPanel>
+
+            <TextBlock 
+                Grid.Row="3"
+                HorizontalAlignment="Center"
+                Text="{x:Bind TaskModel.TaskState, Mode=OneWay}"
+                Style="{ThemeResource CaptionTextBlockStyle}" 
+                Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
+                Margin="0,0,0,8"/>
+
+            <Border 
+                Grid.Row="4"
+                Height="1" 
+                Background="{ThemeResource DividerStrokeColorDefaultBrush}" 
+                HorizontalAlignment="Stretch"
+                Margin="0,8"/>
+
+            <ScrollViewer 
+                Grid.Row="5" 
+                VerticalScrollBarVisibility="Auto" 
+                HorizontalScrollBarVisibility="Disabled">
+
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    Text="{x:Bind TaskModel.Description, Mode=OneWay}"
+                    Style="{ThemeResource CaptionTextBlockStyle}"
+                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                    TextWrapping="Wrap"/>
+                
+            </ScrollViewer>
+
+        </Grid>
+
+    </Border>
+</UserControl>

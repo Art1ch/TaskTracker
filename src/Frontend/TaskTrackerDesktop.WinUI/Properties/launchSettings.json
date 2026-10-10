@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TaskTrackerDesktop.WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "TaskTrackerDesktop.WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
